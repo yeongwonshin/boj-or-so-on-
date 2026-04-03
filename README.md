@@ -10,3 +10,5 @@ The reason i wrote additional code that is not part of actual solutions is to ex
 and learn multiple approaches. 
 
 This repository was created simply to track my learning progress.
+
+[![Solved.ac Profile](http://mazassumnida.wtf/api/v2/generate_badge?boj=ywshin)](https://solved.ac/ywshin)
