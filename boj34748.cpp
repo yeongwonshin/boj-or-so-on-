@@ -6,17 +6,30 @@ const int MAXN = 1e5 + 5;
 ll n, k, t, ans = 1e18;
 vector<pair<ll, ll> > adj[MAXN];
 
-ll sz[MAXN];
+ll sz[MAXN];//서브트리 노드 개수
 ll sum[MAXN], dp[MAXN];
+/*sum[u]: u의 서브트리의 간선 가중치 합/dp[u]: 서브트리 내부 쌍의 거리 합
+sum[u] = Σ dist(u, x)
+         x ∈ subtree(u)
+dp[u] = Σ dist(x, y)
+         x, y ∈ subtree(u), x < y
+*/
 ll up_sum[MAXN], updp[MAXN];
+//u에서 부모쪽으로 가는 간선의 가중치 합,
+//u에서 부모쪽으로 가는 간선의 가중치 합을 제외한 나머지 간선들의 가중치 합
 
 void dfs1(int u, int p) {
-    sz[u] = 1;
+    sz[u] = 1;//자기자신 포함
     for (auto& [v,w]: adj[u]) {
-        if (v == p) continue;
-        dfs1(v, u);
+        if (v == p) continue;//부모로 가는 간선은 제외
+        dfs1(v, u);//자식 먼저 계산
         dp[u] += dp[v] + sz[u] * (sum[v] + w * sz[v]) + sz[v] * sum[u];
-        sz[u] += sz[v], sum[u] += sum[v] + w * sz[v];
+        /*sum[v] + w * sz[v]: v의 서브트리의 간선 가중치 합 + u에서 v로 가는 간선의 가중치 * v의 서브트리 노드 개수
+sz[u] * (sum[v] + w * sz[v]): u의 서브트리의 노드 개수 * (v의 서브트리의 간선 가중치
+        */
+        sz[u] += sz[v];
+        sum[u] += sum[v] + w * sz[v];
+    
     }
 }
 

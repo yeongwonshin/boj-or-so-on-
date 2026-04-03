@@ -2,7 +2,7 @@
 using namespace std;
 
 const int MAXV = 1000;
-vector<int> adj[MAXV];
+vector<int> adj[MAXV];//1차원 벡터지만 사실상 2차원임.
 bool visited[MAXV];
 
 void dfs_iterative(int start) {

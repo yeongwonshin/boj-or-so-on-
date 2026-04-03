@@ -69,7 +69,8 @@ int bfs(int sr,int sc){
 int main(){
 
     cin>>R>>C;
-cin.ignore(numeric_limits<streamsize>::max(), '\n');
+    cin.ignore();
+
     maze.resize(2*R+1);
 
     for(int i=0;i<2*R+1;i++)
